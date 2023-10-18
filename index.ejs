@@ -13,11 +13,11 @@
         <h1>Description Page</h1>
         <div class="icons">
             <div class="wishlist-icon">
-                <i class="fa-regular fa-heart" style="color: #c60c3a;"></i> <!-- Font Awesome heart icon -->
+                <i class="fa-regular fa-heart" style="color: #c60c3a;"></i> 
                 <span> Wishlist</span>
             </div>
             <div class="cart-icon">
-                <i class="fas fa-shopping-cart"></i> <!-- Font Awesome cart icon -->
+                <i class="fas fa-shopping-cart"></i> 
                 <span> Cart</span>
             </div>
         </div>
@@ -41,8 +41,6 @@
     margin-left: 20px;
 }
 
-/* Assuming you have Font Awesome and its styles included in your project */
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -52,21 +50,26 @@
         .product-container {
             display: flex;
             padding: 20px;
+            padding-left: 120px;
+            padding-right: 100px;
         }
 
         .product-image img {
-            width: 300px;
-            height: 400px;
+            width: 400px;
+            height: 650px;
             object-fit: cover;
-            margin-right: 20px;
+            margin-right: 100px;
+        }
+        .product-description{
+            padding: 50px;
         }
 
         .cart-list {
             list-style: none;
-            padding: 0;
+            padding-left: 100px;
         }
         .action-button {
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -78,8 +81,10 @@
     cursor: pointer;
 
 }
-
-/* Position the buttons to the right */
+#sizeDropdown {
+            padding: 10px;
+            font-size: 14px;
+        }
 .product-description {
     display: flex;
     flex-direction: column;
@@ -95,7 +100,7 @@
  
     <div class="product-container">
         <div class="product-image">
-            <img src="https://cdnd.lystit.com/photos/0b3f-2016/02/01/nike-cool-greyblack-dri-fit-training-t-shirt-gray-product-0-970012846-normal.jpeg" alt="Nike Jersey">
+            <img src="https://cdnb.lystit.com/photos/2011/09/14/nike-carbon-heather-black-pro-combat-dri-fit-fitted-t-shirt-product-2-1987374-078852542.jpeg">
         </div>
        
         <div class="product-description">
@@ -118,8 +123,8 @@
 
        <p id="outOfStockMessage" style="color: red; display: none;">Sorry, product out of stock</p>
         <button id="addToCartBtn" class="action-button">Add to Cart</button>
-        <!-- Add to Wishlist Button -->
-        <button id="addToWishlistBtn" class="action-button" onclick="addToWishlist('<%= pageTitle %>')">Add to Wishlist</button>
+      <br>
+        <button id="addToWishlistBtn" class="action-button" onclick="addToWishlist('<%= product %>')">Add to Wishlist</button>
         
     </div>
             <p>Product details</p>
@@ -138,9 +143,7 @@
     
     <script>
         const addToCartBtn = document.getElementById('addToCartBtn');
-
-
-  const wishlistIcon = document.querySelector('.wishlist-icon');
+         const wishlistIcon = document.querySelector('.wishlist-icon');
     const cartIcon = document.querySelector('.cart-icon');
     const outOfStockMessage = document.getElementById('outOfStockMessage');
         let clickCounter = 0;
@@ -149,7 +152,7 @@
     wishlistIcon.addEventListener('click', function() {
         window.location.href = '/wish';
     });
-
+    const addToWishlistBtn = document.getElementById('addToWishlistBtn');
     // Redirect to the cart page when the cart icon is clicked
     cartIcon.addEventListener('click', function() {
         window.location.href = '/cart';
@@ -163,7 +166,9 @@
                 addToCart('<%= product %>');
             }
         });
-        
+        addToWishlistBtn.addEventListener('click', function() {
+        addToWishlist('<%= product %>');
+    });
     function addToCart(product) {
         fetch('/addToCart')
             .then(response => response.json())
@@ -173,6 +178,10 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+    }
+    
+    function addToWishlist(product) {
+        alert(`Nike Jersey is added to your wishlist ❤️`);
     }
 
     
