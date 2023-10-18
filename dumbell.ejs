@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+  
+</head>
+
+<body>
+    <div class="header">
+        <h1>Description Page</h1>
+        <div class="icons">
+            <div class="wishlist-icon">
+                <i class="fa-regular fa-heart" style="color: #c60c3a;"></i> <!-- Font Awesome heart icon -->
+                <span> Wishlist</span>
+            </div>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i> <!-- Font Awesome cart icon -->
+                <span> Cart</span>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon {
+    margin-left: 20px;
+}
+
+/* Assuming you have Font Awesome and its styles included in your project */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .product-container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .product-image img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .cart-list {
+            list-style: none;
+            padding: 0;
+        }
+        .action-button {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+
+}
+
+/* Position the buttons to the right */
+.product-description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.action-button {
+    margin-left: auto;
+}
+    </style>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+ 
+    <div class="product-container">
+        <div class="product-image">
+            <img src="https://cdn-images.cure.fit/www-curefit-com/image/upload/fl_progressive,f_auto,q_auto:eco,w_300,h_400,ar_0.75,c_fill,q_70/dpr_1.5/cultgear-content/cv4GCjuUxcgr5AABQAt1qdCQ" alt="Nike Jersey">
+        </div>
+       
+        <div class="product-description">
+            <h1>Dumbell</h1>
+           <h2>Price : Rs 750</h2>
+
+           <hr>
+           <div>
+         
+           <h2>Select Weight</h2>
+           <select id="sizeDropdown">
+            <option value="2.5 kg">2.5 kg</option>
+            <option value="5 kg">5 kg</option>
+            <option value="10 kg">10 kg</option>
+            <option value="20 kg">20 kg</option>
+            <option value="30 kg">30 kg</option>
+        </select>
+        <br>
+        <br>
+
+        <button id="addToCartBtn" class="action-button" onclick="addToCart('<%= product %>')">Add to Cart</button>
+
+        <!-- Add to Wishlist Button -->
+        <button id="addToWishlistBtn" class="action-button" onclick="addToWishlist('<%= pageTitle %>')">Add to Wishlist</button>
+        
+    </div>
+            <p>Product details</p>
+         <p>This dumbell is the latest innovation in Home Fitness,<br>
+             replacing multiple sets of weights.<br>
+             it  is equivalent to 15 different dumbbells. <br>
+             The product has easy-to-use selection dials for adjusting weights.</p>
+            
+        </div>
+    </div>
+  
+    <script>
+            const addToCartBtn = document.getElementById('addToCartBtn');
+
+addToCartBtn.addEventListener('click', function() {
+    addToCart('<%= product %>');
+});
+      const wishlistIcon = document.querySelector('.wishlist-icon');
+        const cartIcon = document.querySelector('.cart-icon');
+
+        // Redirect to the wishlist page when the wishlist icon is clicked
+        wishlistIcon.addEventListener('click', function() {
+            window.location.href = '/wish';
+        });
+
+        // Redirect to the cart page when the cart icon is clicked
+        cartIcon.addEventListener('click', function() {
+            window.location.href = '/cart';
+        });
+        function addToCart(product) {
+            fetch('/addToCart')
+                .then(response => response.json())
+                .then(data => {
+                    alert(`"${product}" is added to the cart!`);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        
+        </script>
+</body>
+
+</html>
