@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,3 +102,157 @@
     </div>
   </div>
 </nav>
+
+    <h2 style="margin: 50px;"><%=pdt.name%></h2>
+    <div class="card" style="width: 18rem;">
+        <img src="<%=pdt.image%>" class="card-img-top" alt="...">
+        
+      </div>
+       <div class="content" >
+       
+        <li class="description"><%= pdt.description %></li>
+        <li>&#8377; <%= parseFloat(pdt.price).toLocaleString("en-IN") %></li>
+        <li><%= pdt.type %></li>
+        <li id="availability"><%= pdt.availability %></li>
+        <li><%= pdt.review %></li>
+            <!-- <a href="/cart?name=<%= pdt.name %>&id=<%= pdt._id %>&price=<%= pdt.price %>&image=<%= pdt.image %>"> -->
+              <div class="size-selection" style="display: none;">
+                <li><label for="size">Select Size:</label>
+                <select id="size" name="size">
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select></li>
+            </div>
+    </div>
+    <div class="content">
+      <a  style="width: 120px ;" href="/cart?name=<%= pdt.name %>&id=<%= pdt._id %>&price=<%= pdt.price %>&image=<%= pdt.image %>"
+        onclick="updateAvailability()">
+         <button class="btn btn-primary">Add to cart</button>
+
+          </a>
+    <br>
+          <a href="/wishlist?name=<%= pdt.name %>&id=<%= pdt._id %>&price=<%= pdt.price %>&image=<%= pdt.image %>">
+  <button class="btn btn-primary">Add to Wishlist</button>
+</a>
+  </div>
+    </div >
+    
+    <div class="reviews">
+      <hr>
+    <h3 >All Reviews</h3>
+   
+   <ul>
+   <% for(ratings of pdt.rating) {%>
+   <li><%=ratings.comment%></li>
+  <%}%>
+</ul>
+    <hr>
+
+    <div class="col-8 offset-2">
+      <h4>Leave a Review</h4>
+      <form class="mb-3" method="POST" action="/all/<%=pdt._id%>/rating" novalidate="needs-validation">
+        <div class="mb-3 mt-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="range" min="1" max="5" id="rating" name="rating[rat]" required >
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="comment" class="form-label">Comment</label>
+       <textarea name="rating[comment]" id="comment" cols="50" rows="5" class="form-control" required></textarea>
+      </div>
+      <button class=" btn btn-outline-dark">Submit</button>
+    </form>
+    </div>
+    </form>
+    <hr>
+</div>
+  
+</div>
+    <footer>
+        <div class="contact" id="contacts">
+            <h2>Contact Us</h2>
+            <p>Feel free to get in touch with us for any inquiries.</p>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f fa-2x" style="color: #000;"></i></a>
+            <a href="#"><i class="fab fa-instagram fa-2x" style="color: #000;"></i></a>
+            <a href="#"><i class="fas fa-envelope fa-2x" style="color: #000;"></i></a>
+        </div>
+        <div class="center">
+            Copyright &copy; www.flexmart.com. All rights reserved!
+        </div>
+    </footer>
+<script>
+  function updateAvailability() {
+            const availabilityElement = document.getElementById('availability');
+            if (availabilityElement) {
+                const currentAvailability = parseInt(availabilityElement.textContent);
+                if (!isNaN(currentAvailability) && currentAvailability > 0) {
+                    availabilityElement.textContent = currentAvailability - 1; 
+                }
+            }
+        }
+        window.onload = function() {
+    const productType = "<%= pdt.type %>";
+    const sizeSelection = document.querySelector('.size-selection');
+    const sizeOptions = document.querySelector('#size');
+
+    if (productType === 'Apparel') {
+    
+        sizeSelection.style.display = 'block';
+        
+        sizeOptions.innerHTML = `
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        `;
+    } else if (productType === 'Footwear') {
+        
+        sizeSelection.style.display = 'block';
+        
+        sizeOptions.innerHTML = `
+            <option value="UK 6">UK 6</option>
+            <option value="UK 7">UK 7</option>
+            <option value="UK 8">UK 8</option>
+            <option value="UK 9">UK 9</option>
+            <option value="UK 10">UK 10</option>
+            <option value="UK 11">UK 11</option>
+        `;
+    } else if (productType === 'supplements') {
+    
+        sizeSelection.style.display = 'block';
+      
+        sizeOptions.innerHTML = `
+            <option value="50g">50g</option>
+            <option value="100g">100g</option>
+            <option value="150g">150g</option>
+            <option value="200g">200g</option>
+            <option value="500g">500g</option>
+            <option value="1kg">1kg</option>
+        `;
+    }  
+    else if (productType === 'Strength') {
+  
+        sizeSelection.style.display = 'block';
+       
+        sizeOptions.innerHTML = `
+            <option value="2.5kg">2.5kg</option>
+            <option value="5kg">5kg</option>
+            <option value="10kg">10kg</option>
+            <option value="15kg">15kg</option>
+            <option value="20kg">20g</option>
+            <option value="25kg">25kg</option>
+        `;
+    }  
+    else {
+        
+        sizeSelection.style.display = 'none';
+    }
+};
+</script>
+</body>
+</html>
