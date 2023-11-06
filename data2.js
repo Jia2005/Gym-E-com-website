@@ -223,7 +223,7 @@ const sampleproducts = [
     {
         name: "Nike Womens sweatshirt",
         description: "Stylish and comfortable pants for yoga and athleisure",
-        image: "https://www.lifestylesports.com/on/demandware.static/-/Sites-LSS_eCommerce_Master/default/dwb36aba66/images/64585813xlarge.jpg ",
+        image: "https://rukminim2.flixcart.com/image/612/612/xif0q/sweatshirt/p/0/l/s-dq5543-010-nike-original-imagtmufzh6r8uhn.jpeg?q=70",
         price: 835,
         type: "Apparel",
         availability: "30 left",
@@ -232,7 +232,7 @@ const sampleproducts = [
     {
         name: "Nike mens Sleveless shirt",
         description: "Stylish and comfortable pants for yoga and athleisure",
-        image: "https://cdnb.lystit.com/photos/nike/be0d8fd5/nike-WhiteBlackBlack-Pro-Mens-Sleeveless-Training-Top.jpeg",
+        image: "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/f5dc323d-59b6-4779-ae58-81aff0720026/dri-fit-rise-365-running-tank-pr7gXM.png",
         price: 435,
         type: "Apparel",
         availability: "30 left",
