@@ -114,7 +114,7 @@ const sampleproducts = [
     {//image
         name: "ATOM Whey Protein Powder",
         description: "Boost your energy and focus before hitting the gym",
-        image: "https://m.media-amazon.com/images/I/71mBvhlzBRL._SY879_.jpg'",
+        image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRmWhosSco8rNBVvr7odGouxepKcedJkT66g_zLe_peCBwCLNEmHpDy_XJWyPnd4zsADkzWnxahMrXgnqocmYJkpSthjQWvSxOspTV3mMX9z3yS6xyPIbO_tWKwx5gfef7hUQaV964v7s8&usqp=CAc",
         price: 1200,
         type: "supplements",
         availability: "15 left",
